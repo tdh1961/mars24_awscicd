@@ -11,6 +11,12 @@ pipeline {
                 steps{
                     sh 'echo Test'
                 }
+        }   
+
+            stage('clean'){
+                steps{
+                    sh 'echo clean'
+                }
         }
 }
 }
