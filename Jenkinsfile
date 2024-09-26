@@ -1,15 +1,24 @@
 pipeline {
-    agent any 
+    agent any
+
+    environment{
+        BRANCH_NAME = 'main'
+        GIT_URL = 'https://github.com/tdh1961/mars24_awscicd1.git'
+        IMAGE_TAG = 'awscicd'
+        IMAGE_VERSION = ${BUILD_NUMBER}
+
+    }
         stages {
-            stage('Build'){
+            stage('git checkout'){
                 steps{
-                    sh 'echo Build'
+                    git branch: "${BRANCH_NAME}" , URL: "${GIT_BRANCH}"
                 }
             }
 
-            stage('Test'){
+            stage('docker build'){
                 steps{
-                    sh 'echo Test'
+                    sh 'docker build -t "${IMAGE_TAG}:${IMAGE_VERSION}" .'
+                    sh 'docker images'
                 }
         }   
 }
