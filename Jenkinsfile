@@ -11,7 +11,7 @@ pipeline {
         stages {
             stage('git checkout'){
                 steps{
-                    git branch: "${BRANCH_NAME}" , URL: "${GIT_BRANCH}"
+                    git branch: "${BRANCH_NAME}" , url: "${GIT_URL}"
                 }
             }
 
@@ -19,7 +19,7 @@ pipeline {
                 steps{
                     sh 'docker build -t "${IMAGE_TAG}:${IMAGE_VERSION}" .'
                     sh 'docker images'
-                    
+
                 }
         }   
 }
